@@ -1,0 +1,22 @@
+Path:
+  LogData:
+    - 'log_data/dc.csv'
+    - 'log_data/hpcs.csv'
+    - 'log_data/bb-dl.csv'
+    - 'log_data/pssp.csv'
+  BakLog:
+    - 'bak_log/dc.csv'
+    - 'bak_log/hpcs.csv'
+    - 'bak_log/bb-dl.csv'
+    - 'bak_log/pssp.csv'
+
+Socket:
+  HOST: 192.168.30.2
+  PORT: 30001
+
+Influx:
+  measurement:
+    - 'dc'
+    - 'hpcs'
+    - 'biomus'
+    - 'pssp'

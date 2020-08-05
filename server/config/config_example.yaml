@@ -1,0 +1,10 @@
+Socket:
+  HOST: 0.0.0.0
+  POST: 30001
+
+Influx:
+  HOST: 'localhost'
+  PORT: 9999
+  username: 'root'
+  password: 'root'
+  database: 'emgmt'
