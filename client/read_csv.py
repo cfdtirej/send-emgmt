@@ -5,8 +5,8 @@ import yaml
 
 
 # check the csv file charset
-def check_charset(csvpath):
-    with open(csvpath, 'rb') as f:
+def check_charset(filepath):
+    with open(filepath, 'rb') as f:
         reader = f.readlines()
         byte_row = b''
         for r, i in zip(reader, range(8)):
