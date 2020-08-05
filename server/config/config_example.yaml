@@ -4,7 +4,7 @@ Socket:
 
 Influx:
   HOST: 'localhost'
-  PORT: 9999
+  PORT: 8086
   username: 'root'
   password: 'root'
   database: 'emgmt'

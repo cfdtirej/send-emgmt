@@ -1,6 +1,7 @@
 .idea/
 
-client/bak_log/*
+client/prev_log/*
+
 client/log_data/*
 
 client/config/*

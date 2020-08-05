@@ -1,22 +1,15 @@
 Path:
-  LogData:
-    - 'log_data/dc.csv'
-    - 'log_data/hpcs.csv'
-    - 'log_data/bb-dl.csv'
-    - 'log_data/pssp.csv'
-  BakLog:
-    - 'bak_log/dc.csv'
-    - 'bak_log/hpcs.csv'
-    - 'bak_log/bb-dl.csv'
-    - 'bak_log/pssp.csv'
+  LatestLog:
+    dc: 'log_data/dc.csv'
+    hpcs: 'log_data/hpcs.csv'
+    biomus: 'log_data/bb-dl.csv'
+    pssp: 'log_data/pssp.csv'
+  PrevLog:
+    dc: 'prev_log/dc.csv'
+    hpcs: 'prev_log/hpcs.csv'
+    biomus: 'prev_log/bb-dl.csv'
+    pssp: 'prev_log/pssp.csv'
 
 Socket:
   HOST: 'localhost'
   PORT: 30001
-
-Influx:
-  measurement:
-    - 'dc'
-    - 'hpcs'
-    - 'biomus'
-    - 'pssp'

@@ -1,8 +1,7 @@
 import csv
 import os
 import chardet
-import numpy as np
-import pprint
+import yaml
 
 
 # check the csv file charset
@@ -16,22 +15,21 @@ def check_charset(csvpath):
         return file_details['encoding']
 
 
-def get_file_diff(latest_file, bak_file):
+# Get file diff array
+def get_file_diff(latest_file, prev_file):
     charset = check_charset(latest_file)
-
     with open(latest_file, 'r', encoding=charset) as f:
         reader = csv.reader(f)
         latest_table = [row for row in reader]
-    with open(bak_file, 'r', encoding=charset) as f:
+    with open(prev_file, 'r', encoding=charset) as f:
         reader = csv.reader(f)
-        bak_table = [row for row in reader]
-    for bak in bak_table:
+        prev_table = [row for row in reader]
+    for prev in prev_table:
         for latest in latest_table:
-            if latest == bak:
+            if latest == prev:
                 latest_table.remove(latest)
     return latest_table
 
 
 if __name__ == '__main__':
-    print()
-
+    print(get_file_diff('log_data/dc.CSV', 'prev_log/dc.CSV'))
