@@ -1,1 +1,10 @@
 .idea/
+
+client/bak_log
+client/log_data
+
+client/config/*
+!client/config/config_example.yaml
+
+server/config/*
+!server/config/config_example.yaml
