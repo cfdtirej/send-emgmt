@@ -16,7 +16,7 @@ def check_charset(filepath):
 
 
 # Get file diff array
-def get_file_diff(latest_file, prev_file):
+def get_csv_diff(latest_file, prev_file):
     charset = check_charset(latest_file)
     with open(latest_file, 'r', encoding=charset) as f:
         reader = csv.reader(f)
@@ -32,4 +32,4 @@ def get_file_diff(latest_file, prev_file):
 
 
 if __name__ == '__main__':
-    print(get_file_diff('log_data/dc.CSV', 'prev_log/dc.CSV'))
+    print(get_csv_diff('log_data/dc.CSV', 'prev_log/dc.CSV'))
