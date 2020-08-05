@@ -1,7 +1,7 @@
 .idea/
 
 client/bak_log/*
-client/log_data
+client/log_data/*
 
 client/config/*
 !client/config/config_example.yaml
