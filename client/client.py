@@ -8,9 +8,10 @@ import config
 
 
 class SendEmgmt:
-    def __init__(self, host, port):
+    def __init__(self, host, port, measurement):
         self.host = host
         self.port = port
+        self.measurement = measurement
 
     def emgmt_client(self, latest_file, prev_file):
         csv_diff = csv_processing.get_csv_diff(latest_file, prev_file)
@@ -23,9 +24,9 @@ class SendEmgmt:
             if count > 0:
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     data_json = {
-                        'measurement': 'measurement',
+                        'measurement': self.measurement,
                         'tags': {
-                            'type': 'tag value'
+                            'class': self.measurement
                         },
                         'time': times_list[count],
                         'fields': dict(zip(column, csv_diff[count][1:]))
@@ -47,5 +48,5 @@ if __name__ == '__main__':
     port = config.port
     latest_file = config.latest_path['dc']
     prev_file = config.prev_path['dc']
-    dc = SendEmgmt(host, port)
+    dc = SendEmgmt(host, port, 'dc')
     dc.emgmt_client(latest_file, prev_file)
