@@ -1,3 +1,4 @@
+import ast
 import socketserver
 import zlib
 
@@ -8,7 +9,8 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         self.data = self.request.recv(4096).strip()
         print("{} wrote:".format(self.client_address[0]))
         data = zlib.decompress(self.data).decode('unicode-escape')
-        print(data)
+        write_data = [ast.literal_eval(data)]
+        print(write_data)
         # just send back the same data, but upper-cased
         self.request.sendall(b'Got your back!!!')
 
