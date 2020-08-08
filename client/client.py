@@ -1,9 +1,11 @@
 import socket
 import json
 import time
+import zlib
 
 import csv_processing
 import config
+
 
 class SendEmgmt:
     def __init__(self, host, port):
@@ -20,7 +22,7 @@ class SendEmgmt:
         while True:
             if count > 0:
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                    data = {
+                    data_json = {
                         'measurement': 'measurement',
                         'tags': {
                             'type': 'tag value'
@@ -30,9 +32,9 @@ class SendEmgmt:
                     }
                     if csv_diff[count][1:] is None:
                         break
-                    send_json = json.dumps(data)
+                    compress_json = zlib.compress(json.dumps(data_json).encode('utf-8'))
                     s.connect((self.host, self.port))
-                    s.sendall(send_json.encode('utf-8'))
+                    s.sendall(compress_json)
                     recv_msg = s.recv(4096)
                     print('#---Server message---#\n{}'.format(recv_msg))
             count += 1

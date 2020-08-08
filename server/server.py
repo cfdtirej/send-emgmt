@@ -1,4 +1,5 @@
 import socketserver
+import zlib
 
 
 class MyTCPHandler(socketserver.BaseRequestHandler):
@@ -6,9 +7,10 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         # self.request is the TCP socket connected to the client
         self.data = self.request.recv(4096).strip()
         print("{} wrote:".format(self.client_address[0]))
-        print(self.data)
+        data = zlib.decompress(self.data).decode('unicode-escape')
+        print(data)
         # just send back the same data, but upper-cased
-        self.request.sendall(b'ok')
+        self.request.sendall(b'Got your back!!!')
 
 
 if __name__ == "__main__":
