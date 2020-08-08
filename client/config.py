@@ -1,6 +1,6 @@
 import yaml
 
-config_yaml = 'config/config.yml'
+config_yaml = './config/config.yml'
 with open(config_yaml, 'r') as yml:
     config = yaml.safe_load(yml)
     latest_path = config['Path']['LatestLog']
@@ -11,3 +11,5 @@ with open(config_yaml, 'r') as yml:
 if __name__ == '__main__':
     print(latest_path)
     print(prev_path)
+    a = prev_path.keys()
+    

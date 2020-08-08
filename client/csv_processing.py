@@ -3,6 +3,8 @@ import os
 import chardet
 import yaml
 
+import config
+
 
 # check the csv file charset
 def check_charset(filepath):
@@ -52,7 +54,8 @@ def get_csv_diff(latest_file, prev_file):
 
 
 if __name__ == '__main__':
-    # print(get_csv_diff('log_data/dc.csv', 'prev_log/dc.csv'))
-    a = get_csv_diff('log_data/dc.csv', 'prev_log/dc.csv')
+    latest_file = config.latest_path['dc']
+    prev_file = config.prev_path['dc']
+    a = get_csv_diff(latest_file, prev_file)
     print(a)
     print(type(a[0][1]), type(a[0][0]))
