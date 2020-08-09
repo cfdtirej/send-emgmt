@@ -1,6 +1,6 @@
-import socket
 import json
-import time
+import shutil
+import socket
 import zlib
 
 import csv_processing
@@ -40,13 +40,15 @@ class SendEmgmt:
                     print('#---Server message---#\n{}'.format(recv_msg))
             count += 1
             if count == len(csv_diff) - 1:
+                # Copy latest csv file to prev folder
+                # shutil.copy(latest_file, prev_file)
                 break
 
 
 if __name__ == '__main__':
-    host = config.host
-    port = config.port
-    latest_file = config.latest_path['dc']
-    prev_file = config.prev_path['dc']
+    host = config.socket_info['host']
+    port = config.socket_info['port']
+    latest_file = config.filepath['LatestLog']['dc']
+    prev_file = config.filepath['PrevLog']['dc']
     dc = SendEmgmt(host, port, 'dc')
     dc.emgmt_client(latest_file, prev_file)
