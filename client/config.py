@@ -1,15 +1,14 @@
+import os
 import yaml
 
-config_yaml = './config/config.yml'
-with open(config_yaml, 'r') as yml:
+config_yaml = '/config/config.yml'
+yaml_path = os.path.dirname(__file__) + config_yaml
+
+with open(yaml_path, 'r') as yml:
     config = yaml.safe_load(yml)
-    latest_path = config['Path']['LatestLog']
-    prev_path = config['Path']['PrevLog']
-    host = config['Socket']['HOST']
-    port = config['Socket']['PORT']
+    filepath = config['FilePath']
+    socket_info = config['Socket']
+
 
 if __name__ == '__main__':
-    print(latest_path)
-    print(prev_path)
-    a = prev_path.keys()
-    
+    print(config)

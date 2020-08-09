@@ -1,7 +1,5 @@
 import csv
-import os
 import chardet
-import yaml
 
 import config
 
@@ -54,8 +52,7 @@ def get_csv_diff(latest_file, prev_file):
 
 
 if __name__ == '__main__':
-    latest_file = config.latest_path['dc']
-    prev_file = config.prev_path['dc']
-    a = get_csv_diff(latest_file, prev_file)
-    print(a)
-    print(type(a[0][1]), type(a[0][0]))
+    latest_file = config.filepath['LatestLog']['dc']
+    prev_file = config.filepath['PrevLog']['dc']
+    csv_diff = get_csv_diff(latest_file, prev_file)
+    print(csv_diff)
