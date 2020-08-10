@@ -23,12 +23,16 @@ class SendEmgmt:
         while True:
             if count > 0:
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                    if self.measurement == 'hpcs':
+                        timestamp = times_list[count].replace(' ', 'T')+'Z'
+                    elif self.measurement == 'dc' or 'biomus' or 'pssp':
+                        timestamp = times_list[count].replace('/', '-').replace(' ', 'T').replace('.0', 'Z')
                     data_json = {
                         'measurement': self.measurement,
                         'tags': {
                             'class': self.measurement
                         },
-                        'time': times_list[count],
+                        'time': timestamp,
                         'fields': dict(zip(column, csv_diff[count][1:]))
                     }
                     if csv_diff[count][1:] is None:
@@ -50,5 +54,5 @@ if __name__ == '__main__':
     port = config.socket_info['port']
     latest_file = config.filepath['LatestLog']['dc']
     prev_file = config.filepath['PrevLog']['dc']
-    dc = SendEmgmt(host, port, 'dc')
+    dc = SendEmgmt(host, port, 'pssp')
     dc.emgmt_client(latest_file, prev_file)
