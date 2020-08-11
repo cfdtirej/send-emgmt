@@ -27,12 +27,9 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         write_data = [ast.literal_eval(data)]
         # print(write_data)
         # just send back the same data, but upper-cased
-        client = InfluxDBClient(host=db_host,
-                                port=db_port,
-                                username=username,
-                                password=password,
-                                database=database
-                                )
+        client = InfluxDBClient(
+            host=db_host, port=db_port, username=username, password=password, database=database
+        )
         client.write_points(write_data)
         self.request.sendall(b'Got your back!!!')
 
