@@ -2,7 +2,7 @@ import json
 import shutil
 import socket
 import zlib
-
+import time
 import csv_processing
 import config
 
@@ -26,7 +26,7 @@ class SendEmgmt:
                     if self.measurement == 'hpcs':
                         timestamp = times_list[count].replace(' ', 'T')+'Z'
                     elif self.measurement == 'dc' or 'biomus' or 'pssp':
-                        timestamp = times_list[count].replace('/', '-').replace(' ', 'T').replace('.0', 'Z')
+                        timestamp = times_list[count].replace('/', '-').replace(' ', 'T').replace('.0', '+9:00')
                     data_json = {
                         'measurement': self.measurement,
                         'tags': {
@@ -54,5 +54,5 @@ if __name__ == '__main__':
     port = config.socket_info['port']
     latest_file = config.filepath['LatestLog']['dc']
     prev_file = config.filepath['PrevLog']['dc']
-    dc = SendEmgmt(host, port, 'pssp')
+    dc = SendEmgmt(host, port, 'dc')
     dc.emgmt_client(latest_file, prev_file)
