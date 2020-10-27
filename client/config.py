@@ -2,7 +2,7 @@ import os
 import yaml
 
 config_yaml = '/config/config.yml'
-yaml_path = os.path.dirname(__file__) + config_yaml
+yaml_path = os.path.dirname(os.path.abspath(__file__)) + config_yaml
 
 with open(yaml_path, 'r') as yml:
     config = yaml.safe_load(yml)

@@ -1,9 +1,8 @@
 .idea/
+__pycache__
 
 client/log_data/*
-
 client/prev_log/*
-
 client/config/*
 !client/config/config_example.yaml
 

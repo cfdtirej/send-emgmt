@@ -42,6 +42,7 @@ class SendEmgmt:
                     s.sendall(compress_json)
                     recv_msg = s.recv(4096)
                     print('#---Server message---#\n{}'.format(recv_msg))
+                    print(data_json)
             count += 1
             if count == len(csv_diff) - 1:
                 # Copy latest csv file to prev folder
