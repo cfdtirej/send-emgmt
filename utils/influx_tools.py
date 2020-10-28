@@ -21,6 +21,13 @@ def conv_list_value_type(data: list) -> list:
     return result
 
 
+def to_rfc3339(timestamp: str) -> str:
+        if '/' in timestamp:
+            return datetime.strptime(timestamp.partition('.')[0] + '+0900', '%Y/%m/%d %H:%M:%S%z').isoformat()
+        elif '-' in timestamp:
+            return datetime.strptime(timestamp.partition('.')[0] + '+0900', '%Y-%m-%d %H:%M:%S%z').isoformat()
+
+
 class InfluxWriter:
 
     def __init__(self, host='localhost', port=8086, username='root', password='root', database='mydb'):
@@ -52,7 +59,7 @@ class InfluxWriter:
                     {
                         'measurement': measurement,
                         'tags': tags,
-                        'time': datetime.strptime(row[0].partition('.')[0] + '+0900', '%Y-%m-%d %H:%M:%S%z').isoformat(),
+                        'time': to_rfc3339(row[0]),
                         'fields': fields
                     }
                 ]
