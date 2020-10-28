@@ -1,10 +1,10 @@
 .idea/
 __pycache__
 
-client/log_data/*
-client/prev_log/*
-client/config/*
-!client/config/config_example.yaml
+remote_socket/client/log_data/*
+remote_socket/client/prev_log/*
+remote_socket/client/config/*
+!remote_socket/client/config/config_example.yaml
 
-server/config/*
-!server/config/config_example.yaml
+remote_socket/server/config/*
+!remote_socket/server/config/config_example.yaml
