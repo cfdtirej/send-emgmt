@@ -63,13 +63,5 @@ class InfluxOp(InfluxDBClient):
         
 
 if __name__ == '__main__':
-    client = InfluxOp(
-        host='192.168.30.67',
-        port=8086,
-        username='root',
-        password='root',
-        database='pd'
-    )
-    p = '/home/eiji/SaitoLab/send-emgmt/data/2020-06-22.csv'
-    client.csv_write(p, 'el', {'Key': 'Value'})
+    pass
 
