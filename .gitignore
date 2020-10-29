@@ -1,5 +1,7 @@
 .idea/
-__pycache__
+__pycache_
+
+data
 
 remote_socket/client/log_data/*
 remote_socket/client/prev_log/*

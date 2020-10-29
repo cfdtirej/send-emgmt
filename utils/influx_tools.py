@@ -28,16 +28,7 @@ def to_rfc3339(timestamp: str) -> str:
             return datetime.strptime(timestamp.partition('.')[0] + '+0900', '%Y-%m-%d %H:%M:%S%z').isoformat()
 
 
-class InfluxWriter:
-
-    def __init__(self, host='localhost', port=8086, username='root', password='root', database='mydb'):
-        self.client = InfluxDBClient(
-            host=host, 
-            port=port, 
-            username=username, 
-            password=password, 
-            database=database
-        )
+class InfluxOp(InfluxDBClient):
 
     def csv_write(self, csvfile: str, measurement: str, tags: dict) -> None:
         with open(csvfile, 'r') as f:
@@ -64,7 +55,7 @@ class InfluxWriter:
                     }
                 ]
                 try:
-                    self.client.write_points(to_line_protocol)
+                    self.write_points(to_line_protocol)
                 except:
                     pass
 
@@ -72,5 +63,13 @@ class InfluxWriter:
         
 
 if __name__ == '__main__':
-    pass
+    client = InfluxOp(
+        host='192.168.30.67',
+        port=8086,
+        username='root',
+        password='root',
+        database='pd'
+    )
+    p = '/home/eiji/SaitoLab/send-emgmt/data/2020-06-22.csv'
+    client.csv_write(p, 'el', {'Key': 'Value'})
 
